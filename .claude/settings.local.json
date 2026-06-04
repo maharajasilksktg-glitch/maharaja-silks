@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\\\\public\\\\css\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\\\\public\\\\js\")",
+      "PowerShell(cd \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\"; $server = Start-Process -PassThru -FilePath \"node\" -ArgumentList \"server.js\"; Start-Sleep -Seconds 2; $r = Invoke-RestMethod \"http://localhost:3000/api/products?category=Sarees\"; Write-Host \"Products returned: $\\($r.products.Count\\)\"; Write-Host \"First product: $\\($r.products[0].name\\), Price: $\\($r.products[0].price\\)\"; $r2 = Invoke-RestMethod \"http://localhost:3000/api/products/1\"; Write-Host \"Variants for id=1: $\\($r2.product.variants.Count\\)\"; Write-Host \"First variant SKU: $\\($r2.product.variants[0].sku\\)\"; Stop-Process -Id $server.Id -Force)",
+      "Read(//c/Users/V SARAVANA KUMAR/maharaja-theme/**)",
+      "Bash(shopify theme *)",
+      "WebFetch(domain:vasyerp.com)",
+      "WebFetch(domain:pricingpage.vasyerp.com)",
+      "Bash(dir \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\")",
+      "Bash(dir \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\\\\public\")",
+      "Bash(dir \"C:\\\\Users\\\\V SARAVANA KUMAR\\\\shree maharaja silks\\\\routes\")",
+      "Bash(node server.js)",
+      "Bash(mkdir -p \"/mnt/c/Users/V SARAVANA KUMAR/shree maharaja silks/.claude\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node -e ' *)",
+      "WebFetch(domain:www.godaddy.com)",
+      "WebFetch(domain:www.bigrock.in)"
+    ]
+  }
+}

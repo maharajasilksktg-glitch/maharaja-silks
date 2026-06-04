@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Shree Maharaja Silks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <!-- Simple header for checkout (no cart/wishlist icons needed here) -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <a href="/" class="logo">
+        <span class="logo-main">Shree Maharaja Silks</span>
+        <span class="logo-sub">Since 1985 · Finest Indian Clothing</span>
+      </a>
+      <!-- Checkout progress indicator -->
+      <div class="checkout-steps">
+        <span class="step done">🛒 Cart</span>
+        <span class="step-arrow">›</span>
+        <span class="step active">📋 Details</span>
+        <span class="step-arrow">›</span>
+        <span class="step">✅ Confirmation</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-main container">
+
+    <!-- If cart is empty, show this message -->
+    <div id="emptyCartMsg" class="empty-cart-msg hidden">
+      <h2>Your cart is empty</h2>
+      <p>Add some products before checking out.</p>
+      <a href="/" class="btn-primary">← Continue Shopping</a>
+    </div>
+
+    <!-- Main checkout layout: two columns -->
+    <div class="checkout-layout" id="checkoutLayout">
+
+      <!-- ── LEFT: Delivery Details Form ── -->
+      <div class="checkout-form-col">
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">Delivery Details</h2>
+
+          <div class="field">
+            <label for="cName">Full Name *</label>
+            <input type="text" id="cName" placeholder="e.g. Priya Sharma" autocomplete="name" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cPhone">Phone Number *</label>
+              <input type="tel" id="cPhone" placeholder="10-digit mobile number" autocomplete="tel" maxlength="10" />
+            </div>
+            <div class="field">
+              <label for="cEmail">Email <small>(optional)</small></label>
+              <input type="email" id="cEmail" placeholder="for order updates" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cAddr1">Address Line 1 *</label>
+            <input type="text" id="cAddr1" placeholder="House/Flat no., Street name" autocomplete="address-line1" />
+          </div>
+
+          <div class="field">
+            <label for="cAddr2">Address Line 2 <small>(optional)</small></label>
+            <input type="text" id="cAddr2" placeholder="Area, Landmark" autocomplete="address-line2" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cCity">City *</label>
+              <input type="text" id="cCity" placeholder="e.g. Coimbatore" autocomplete="address-level2" />
+            </div>
+            <div class="field">
+              <label for="cState">State *</label>
+              <select id="cState" autocomplete="address-level1">
+                <option value="">— Select State —</option>
+                <option>Andhra Pradesh</option><option>Arunachal Pradesh</option>
+                <option>Assam</option><option>Bihar</option><option>Chhattisgarh</option>
+                <option>Goa</option><option>Gujarat</option><option>Haryana</option>
+                <option>Himachal Pradesh</option><option>Jharkhand</option>
+                <option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option>
+                <option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                <option>Mizoram</option><option>Nagaland</option><option>Odisha</option>
+                <option>Punjab</option><option>Rajasthan</option><option>Sikkim</option>
+                <option selected>Tamil Nadu</option><option>Telangana</option>
+                <option>Tripura</option><option>Uttar Pradesh</option>
+                <option>Uttarakhand</option><option>West Bengal</option>
+                <option>Delhi</option><option>Puducherry</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cPin">Pincode *</label>
+              <input type="text" id="cPin" placeholder="6-digit pincode" maxlength="6" autocomplete="postal-code" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cNotes">Delivery Notes <small>(optional)</small></label>
+            <textarea id="cNotes" rows="2" placeholder="e.g. Leave at the door, call before delivery…"></textarea>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">Payment Method</h2>
+
+          <label class="payment-option selected" id="codOption">
+            <span class="payment-radio selected"></span>
+            <span class="payment-icon">💵</span>
+            <div>
+              <strong>Cash on Delivery</strong>
+              <p>Pay in cash when your order arrives.</p>
+            </div>
+          </label>
+
+          <!-- Online payment (disabled until Stage 5) -->
+          <label class="payment-option disabled" title="Coming soon">
+            <span class="payment-radio"></span>
+            <span class="payment-icon">💳</span>
+            <div>
+              <strong>Online Payment</strong>
+              <p>UPI, Credit/Debit Card — <em>coming soon</em></p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Order Summary ── -->
+      <div class="checkout-summary-col">
+        <div class="checkout-card sticky-card">
+          <h2 class="checkout-card-title">Order Summary</h2>
+
+          <!-- Cart items list (populated by JS) -->
+          <div id="summaryItems" class="summary-items"></div>
+
+          <div class="summary-divider"></div>
+
+          <!-- Totals -->
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summarySubtotal">₹0</span>
+          </div>
+          <div class="summary-row" id="shippingRow">
+            <span>Shipping</span>
+            <span id="summaryShipping">₹49</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total-row">
+            <strong>Total</strong>
+            <strong id="summaryTotal">₹0</strong>
+          </div>
+
+          <!-- Free shipping nudge -->
+          <div class="shipping-nudge" id="shippingNudge"></div>
+
+          <!-- Error message area -->
+          <div class="checkout-error hidden" id="checkoutError"></div>
+
+          <!-- Place Order button -->
+          <button class="btn-primary full-width place-order-btn" id="placeOrderBtn">
+            Place Order (Cash on Delivery)
+          </button>
+
+          <p class="checkout-note">
+            By placing your order you agree to our return policy. You will pay ₹<span id="totalNote">0</span> in cash on delivery.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

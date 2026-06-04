@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shree Maharaja Silks – Kurtis, Sarees & Coord Sets</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    Free Delivery on orders above &#8377;599 &nbsp;|&nbsp; Easy 7-Day Returns &nbsp;|&nbsp; 100% Genuine Products &nbsp;|&nbsp; COD Available
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <span class="logo-main">Shree Maharaja Silks</span>
+        <span class="logo-sub">Kurtis &middot; Sarees &middot; Coord Sets</span>
+      </a>
+
+      <!-- Search -->
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search for kurtis, sarees, coord sets..." autocomplete="off" />
+        <button class="search-btn">Search</button>
+      </div>
+
+      <!-- Icons -->
+      <div class="header-actions">
+        <button class="icon-btn" id="wishlistToggle" title="Wishlist">
+          <span class="icon">&#9825;</span>
+          <span class="badge" id="wishlistCount">0</span>
+          <span class="btn-label">Wishlist</span>
+        </button>
+        <button class="icon-btn" id="cartToggle" title="Cart">
+          <span class="icon">&#128722;</span>
+          <span class="badge" id="cartCount">0</span>
+          <span class="btn-label">Cart</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="container nav-inner">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="#" class="nav-link" data-cat="Kurtis">Kurtis</a>
+        <a href="#" class="nav-link" data-cat="Sarees">Sarees</a>
+        <a href="#" class="nav-link" data-cat="Coord Sets">Coord Sets</a>
+        <a href="#products" class="nav-link">All Products</a>
+        <a href="#" class="nav-link nav-sale">Sale</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-label">New Collection 2026</p>
+      <h1 class="hero-title">Style That Speaks<br>For Every Woman</h1>
+      <p class="hero-desc">Shop the latest kurtis, sarees and coord sets. Fresh styles every week &mdash; starting from just &#8377;200.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-main">Shop Now</a>
+        <a href="#" class="btn-outline" data-cat="Sarees">View Sarees</a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-pill">5000+ Happy Customers</span>
+        <span class="trust-pill">Genuine Products</span>
+        <span class="trust-pill">Easy Returns</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-box">
+        <p class="hero-box-top">Starting From</p>
+        <p class="hero-box-price">&#8377;200</p>
+        <p class="hero-box-bottom">Kurtis &middot; Sarees &middot; Coord Sets</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY STRIP -->
+  <section class="cat-strip">
+    <a href="#" class="cat-card" data-cat="Kurtis">
+      <h3>Kurtis</h3>
+      <p>&#8377;200 &ndash; &#8377;800</p>
+      <span>Shop Now &rarr;</span>
+    </a>
+    <a href="#" class="cat-card cat-card--mid" data-cat="Sarees">
+      <h3>Sarees</h3>
+      <p>&#8377;250 &ndash; &#8377;1500</p>
+      <span>Shop Now &rarr;</span>
+    </a>
+    <a href="#" class="cat-card cat-card--dark" data-cat="Coord Sets">
+      <h3>Coord Sets</h3>
+      <p>Mix &amp; Match Styles</p>
+      <span>Shop Now &rarr;</span>
+    </a>
+  </section>
+
+  <!-- WHY US BAR -->
+  <section class="why-bar">
+    <div class="why-item">
+      <div class="why-icon">&#10003;</div>
+      <div>
+        <strong>100% Genuine</strong>
+        <span>Quality checked products</span>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">&#8634;</div>
+      <div>
+        <strong>Easy Returns</strong>
+        <span>7-day return policy</span>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">&#9673;</div>
+      <div>
+        <strong>Secure Payment</strong>
+        <span>UPI, cards &amp; COD</span>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">&#9993;</div>
+      <div>
+        <strong>Fast Delivery</strong>
+        <span>Free above &#8377;599</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section" id="products">
+    <div class="container">
+
+      <div class="section-head">
+        <h2 class="section-title">Trending Now</h2>
+        <p class="section-sub">Our most loved styles this season</p>
+        <div class="pink-line"></div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs" id="categoryTabs">
+        <button class="tab active" data-cat="All">All</button>
+        <button class="tab" data-cat="Kurtis">Kurtis</button>
+        <button class="tab" data-cat="Sarees">Sarees</button>
+        <button class="tab" data-cat="Coord Sets">Coord Sets</button>
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-bar">
+        <span class="sort-label">Sort by:</span>
+        <select id="sortSelect" class="sort-select">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="no-results hidden" id="noResults">
+        <p>No products found. Try a different category.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROMO BANNERS -->
+  <section class="promo-strip">
+    <div class="promo-box promo-box--1">
+      <p class="promo-label">Everyday Wear</p>
+      <h3 class="promo-title">Kurtis</h3>
+      <p class="promo-text">Casual, party &amp; office styles<br>From &#8377;200</p>
+      <a href="#" class="promo-btn" data-cat="Kurtis">Shop Now &rarr;</a>
+    </div>
+    <div class="promo-box promo-box--2">
+      <p class="promo-label">All Occasions</p>
+      <h3 class="promo-title">Sarees</h3>
+      <p class="promo-text">Georgette, chiffon, net &amp; more<br>&#8377;250 to &#8377;1500</p>
+      <a href="#" class="promo-btn" data-cat="Sarees">Shop Now &rarr;</a>
+    </div>
+    <div class="promo-box promo-box--3">
+      <p class="promo-label">Trending Now</p>
+      <h3 class="promo-title">Coord Sets</h3>
+      <p class="promo-text">Matching top &amp; bottom sets<br>Stylish &amp; comfortable</p>
+      <a href="#" class="promo-btn" data-cat="Coord Sets">Shop Now &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <span class="footer-brand">Shree Maharaja Silks</span>
+        <p>Your trusted destination for quality kurtis, sarees and coord sets. Real products, real prices.</p>
+        <p>&#128222; +91 99420 78004</p>
+        <p>&#128205; Kotagiri, Tamil Nadu</p>
+      </div>
+      <div class="footer-col">
+        <strong>Quick Links</strong>
+        <a href="/">Home</a>
+        <a href="#" data-cat="Kurtis">Kurtis</a>
+        <a href="#" data-cat="Sarees">Sarees</a>
+        <a href="#" data-cat="Coord Sets">Coord Sets</a>
+      </div>
+      <div class="footer-col">
+        <strong>Help</strong>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Return Policy</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Shree Maharaja Silks. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- QUICK VIEW MODAL -->
+  <div class="modal-overlay hidden" id="quickViewOverlay">
+    <div class="modal" id="quickViewModal">
+      <button class="modal-close" id="modalClose">&#10005;</button>
+      <div class="modal-body">
+        <div class="modal-image-wrap">
+          <img src="" alt="" id="modalImage" class="modal-image" />
+        </div>
+        <div class="modal-info">
+          <p class="modal-category" id="modalCategory"></p>
+          <h2 class="modal-name" id="modalName"></h2>
+          <div class="modal-price-row">
+            <span class="modal-price" id="modalPrice"></span>
+            <span class="modal-mrp" id="modalMrp"></span>
+            <span class="modal-discount" id="modalDiscount"></span>
+          </div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <div class="option-group" id="colourGroup">
+            <label class="option-label">Colour</label>
+            <div class="colour-swatches" id="colourSwatches"></div>
+          </div>
+          <div class="option-group" id="sizeGroup">
+            <label class="option-label">Size: <span id="selectedSizeLabel"></span></label>
+            <div class="size-buttons" id="sizeButtons"></div>
+          </div>
+          <p class="stock-info" id="stockInfo"></p>
+          <div class="modal-actions">
+            <button class="btn-main full-width" id="addToCartBtn">Add to Cart</button>
+            <button class="btn-outline full-width" id="addToWishlistBtn">&#9825; Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay hidden" id="cartOverlay"></div>
+  <aside class="cart-sidebar hidden" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="modal-close" id="cartClose">&#10005;</button>
+    </div>
+    <div class="shipping-bar" id="shippingBar">
+      <p id="shippingMsg">Add &#8377;<span id="shippingLeft">599</span> more for free shipping!</p>
+      <div class="shipping-track">
+        <div class="shipping-fill" id="shippingFill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">&#8377;0</span>
+      </div>
+      <button class="btn-main full-width" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- WISHLIST SIDEBAR -->
+  <div class="cart-overlay hidden" id="wishlistOverlay"></div>
+  <aside class="cart-sidebar hidden" id="wishlistSidebar">
+    <div class="cart-header">
+      <h3>My Wishlist</h3>
+      <button class="modal-close" id="wishlistClose">&#10005;</button>
+    </div>
+    <div class="cart-items" id="wishlistItems">
+      <p class="cart-empty">Your wishlist is empty.</p>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>

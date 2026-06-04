@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Shree Maharaja Silks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-text">Maharaja Silks</span>
+      <span class="logo-sub">Admin Panel</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="products">
+        <span class="nav-icon">📦</span> Products
+      </a>
+      <a href="#" class="nav-item" data-view="orders">
+        <span class="nav-icon">🧾</span> Orders
+        <span class="nav-badge hidden" id="pendingBadge">0</span>
+      </a>
+    </nav>
+    <a class="sidebar-shop-link" href="/" target="_blank">← View Shop</a>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-content">
+
+    <!-- ════════════════════════════════
+         PRODUCTS LIST VIEW
+         Default view: table of all products
+    ════════════════════════════════ -->
+    <section id="view-products" class="view active">
+
+      <div class="view-header">
+        <h1 class="view-title">Products</h1>
+        <button class="btn-primary" id="addProductBtn">+ Add New Product</button>
+      </div>
+
+      <!-- Flash message area (success / error notices) -->
+      <div class="flash hidden" id="flash"></div>
+
+      <!-- Products table -->
+      <div class="table-wrap">
+        <table class="products-table" id="productsTable">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>MRP</th>
+              <th>Variants</th>
+              <th>Total Stock</th>
+              <th>Featured</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsBody">
+            <tr><td colspan="9" class="table-loading">Loading products…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ════════════════════════════════
+         ADD / EDIT PRODUCT FORM VIEW
+         Hidden by default; shown when user clicks
+         "Add New Product" or "Edit" on a row
+    ════════════════════════════════ -->
+    <section id="view-form" class="view">
+
+      <div class="view-header">
+        <!-- Title changes between "Add Product" and "Edit Product" -->
+        <h1 class="view-title" id="formTitle">Add Product</h1>
+        <button class="btn-outline" id="cancelFormBtn">← Back to Products</button>
+      </div>
+
+      <!-- Hidden field: stores the ID of the product being edited (empty = new product) -->
+      <input type="hidden" id="editProductId" value="" />
+
+      <div class="form-grid">
+
+        <!-- ── LEFT COLUMN: Basic details ── -->
+        <div class="form-col">
+          <div class="form-card">
+            <h2 class="card-heading">Basic Details</h2>
+
+            <div class="field">
+              <label for="fName">Product Name *</label>
+              <input type="text" id="fName" placeholder="e.g. Kanjivaram Silk Saree" />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="fCategory">Category *</label>
+                <select id="fCategory">
+                  <option value="">— Select —</option>
+                  <option>Kurtis</option>
+                  <option>Sarees</option>
+                  <option>Coord Sets</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fFabric">Fabric</label>
+                <input type="text" id="fFabric" placeholder="e.g. Pure Silk" />
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="fPrice">Selling Price (₹) *</label>
+                <input type="number" id="fPrice" placeholder="e.g. 1299" min="0" />
+              </div>
+              <div class="field">
+                <label for="fMrp">MRP (₹) <small>for discount %</small></label>
+                <input type="number" id="fMrp" placeholder="e.g. 1799" min="0" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="fDesc">Description</label>
+              <textarea id="fDesc" rows="4" placeholder="Describe the product…"></textarea>
+            </div>
+
+            <div class="field checkbox-field">
+              <label>
+                <input type="checkbox" id="fFeatured" />
+                Mark as Featured (shows first in the shop)
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── RIGHT COLUMN: Images + Variants ── -->
+        <div class="form-col">
+
+          <!-- Photos section -->
+          <div class="form-card">
+            <h2 class="card-heading">Product Photos</h2>
+            <p class="card-hint">Upload JPG or PNG images. First photo = main photo shown in the shop.</p>
+
+            <!-- Existing images (shown when editing) -->
+            <div class="image-preview-row" id="existingImages"></div>
+
+            <!-- File input for new uploads -->
+            <label class="upload-area" id="uploadLabel">
+              <span class="upload-icon">📷</span>
+              <span>Click to select photos (max 5 MB each)</span>
+              <input type="file" id="fImages" accept="image/*" multiple hidden />
+            </label>
+            <!-- Preview of newly selected files (before upload) -->
+            <div class="image-preview-row" id="newImagePreviews"></div>
+          </div>
+
+          <!-- Variants section -->
+          <div class="form-card">
+            <h2 class="card-heading">Colours &amp; Sizes (Variants)</h2>
+            <p class="card-hint">Each colour + size combo gets its own SKU and stock count.</p>
+
+            <!-- Step 1: enter colours -->
+            <div class="field">
+              <label>Colours <small>(press Enter or comma to add)</small></label>
+              <div class="tag-input-wrap" id="colourTagWrap">
+                <input type="text" id="colourTagInput" placeholder="Type a colour and press Enter…" />
+              </div>
+            </div>
+
+            <!-- Step 2: pick size system -->
+            <div class="field">
+              <label>Size System</label>
+              <div class="size-system-radios" id="sizeSystemRadios">
+                <label class="radio-label">
+                  <input type="radio" name="sizeSystem" value="free" checked /> Free Size
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="sizeSystem" value="clothing" /> Clothing (S M L XL XXL)
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="sizeSystem" value="pants" /> Pants (30 32 34 36 38)
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3: generate the grid -->
+            <button class="btn-outline full-width" type="button" id="generateGridBtn">
+              Generate Stock Grid
+            </button>
+
+            <!-- The stock grid appears here after clicking Generate -->
+            <div id="variantGridWrap" class="hidden">
+              <p class="grid-hint">Fill in the stock quantity for each colour + size. Leave 0 for out of stock.</p>
+              <div class="variant-grid-scroll">
+                <table class="variant-grid" id="variantGridTable"></table>
+              </div>
+            </div>
+
+            <!-- Shown when editing: existing variants summary -->
+            <div id="existingVariantsSummary" class="hidden">
+              <p class="card-hint existing-variants-note">Existing variants loaded into the grid above.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Save button (bottom of the form) -->
+      <div class="form-actions">
+        <button class="btn-primary large" id="saveProductBtn">Save Product</button>
+        <button class="btn-outline large" id="cancelFormBtn2">Cancel</button>
+      </div>
+
+    </section>
+
+    <!-- ════════════════════════════════
+         ORDERS VIEW
+    ════════════════════════════════ -->
+    <section id="view-orders" class="view">
+
+      <div class="view-header">
+        <h1 class="view-title">Orders</h1>
+        <button class="btn-outline" id="refreshOrdersBtn">↻ Refresh</button>
+      </div>
+
+      <div class="flash hidden" id="orderFlash"></div>
+
+      <div class="table-wrap">
+        <table class="products-table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order No.</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <tr><td colspan="9" class="table-loading">Loading orders…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ── ORDER DETAIL PANEL (slide-in) ── -->
+    <div class="order-overlay hidden" id="orderOverlay"></div>
+    <aside class="order-panel hidden" id="orderPanel">
+      <div class="order-panel-header">
+        <h3 id="orderPanelTitle">Order Details</h3>
+        <button class="modal-close" id="orderPanelClose">✕</button>
+      </div>
+      <div class="order-panel-body" id="orderPanelBody">
+        <!-- filled by JS -->
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ── DELETE CONFIRMATION DIALOG ── -->
+  <div class="dialog-overlay hidden" id="deleteOverlay">
+    <div class="dialog">
+      <h3>Delete Product?</h3>
+      <p id="deleteMsg">This cannot be undone. All variants and photos will also be deleted.</p>
+      <div class="dialog-actions">
+        <button class="btn-danger" id="confirmDeleteBtn">Yes, Delete</button>
+        <button class="btn-outline" id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

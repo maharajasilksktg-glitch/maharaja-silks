@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed – Shree Maharaja Silks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner container">
+      <a href="/" class="logo">
+        <span class="logo-main">Shree Maharaja Silks</span>
+        <span class="logo-sub">Since 1985 · Finest Indian Clothing</span>
+      </a>
+      <div class="checkout-steps">
+        <span class="step done">🛒 Cart</span>
+        <span class="step-arrow">›</span>
+        <span class="step done">📋 Details</span>
+        <span class="step-arrow">›</span>
+        <span class="step active">✅ Confirmation</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-main">
+
+    <!-- Loading state while we fetch the order -->
+    <div id="loadingMsg" class="confirmation-wrap">
+      <p style="color:#7A6550;font-size:15px">Loading your order…</p>
+    </div>
+
+    <!-- Error state (order not found) -->
+    <div id="errorMsg" class="confirmation-wrap hidden">
+      <p style="color:#C62828;font-size:15px">Could not load order details. Please contact the shop.</p>
+      <a href="/" class="btn-primary" style="margin-top:20px;display:inline-block">← Go Home</a>
+    </div>
+
+    <!-- Confirmation content (populated by JS) -->
+    <div id="confirmationContent" class="confirmation-wrap hidden">
+
+      <div class="confirmation-icon">🎉</div>
+      <h1 class="confirmation-title">Order Placed Successfully!</h1>
+      <p class="confirmation-subtitle">Thank you for shopping with us. Your order has been received.</p>
+      <p class="confirmation-subtitle">We'll contact you on <strong id="confirmPhone"></strong> to confirm your order.</p>
+
+      <div class="order-number-badge" id="confirmOrderNumber"></div>
+
+      <!-- Delivery address -->
+      <div class="confirmation-card">
+        <h3>Delivery Address</h3>
+        <p class="confirm-address" id="confirmAddress"></p>
+      </div>
+
+      <!-- Order items -->
+      <div class="confirmation-card">
+        <h3>Items Ordered</h3>
+        <div id="confirmItems"></div>
+        <div class="confirm-total-row">
+          <span>Total (Cash on Delivery)</span>
+          <span id="confirmTotal"></span>
+        </div>
+      </div>
+
+      <div class="confirmation-actions">
+        <a href="/" class="btn-primary">← Continue Shopping</a>
+        <a href="/admin" class="btn-outline" target="_blank">View Orders (Admin)</a>
+      </div>
+
+      <p style="font-size:12px;color:#AAA;margin-top:20px">
+        Keep your order number safe. Use it to track or enquire about your order.
+      </p>
+
+    </div>
+  </main>
+
+  <script src="js/order-confirmation.js"></script>
+</body>
+</html>
